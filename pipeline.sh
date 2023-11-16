@@ -13,3 +13,15 @@ python3 scripts/01_download_reads.py -i 00_input/SRA_toDownload.ls -o 01_raw_rea
 # aggregate fastqc report into a single html file
 # REQUIRES: conda_envs/multiqc_env.yml
 multiqc -o 01_raw_reads/01_fastqc/ 01_raw_reads/01_fastqc/
+
+
+######################
+#     TRIM READS     #
+######################
+
+# create a directory to store trimmed reads and quality control results
+mkdir -p 02_trimmed_reads/01_fastqc
+
+# trim reads
+# REQUIRES trimmomatic and fastqc
+for i in 01_raw_reads/SRR*; do python3 scripts/02_trim_reads.py -d $i -adapt 00_input_files/contaminants2trimm.fa; done

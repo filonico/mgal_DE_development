@@ -1,3 +1,6 @@
 01_raw_reads/*
 cluster_script/*
 slurm*
+02_trimmed_reads/*
+*temp*
+*tmp*
