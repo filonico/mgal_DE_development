@@ -1,6 +1,6 @@
 name: multiqc_env
 channels:
-  - bioconda/label/cf201901
+  - bioconda
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
