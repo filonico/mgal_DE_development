@@ -34,6 +34,10 @@ multiqc -o 02_trimmed_reads/01_fastqc 02_trimmed_reads/01_fastqc
 #     MAP READS     #
 #####################
 
+# Genome assembly and annotation were downloaded from https://www.ncbi.nlm.nih.gov/assembly/GCA_900618805.1
+# The GFF genome annotation file was converted into a GTF file by running the following command:
+# agat_convert_sp_gff2gtf.pl --gff GCA.900618805.1_mgal_genomic.gff.gz -o GCA.900618805.1_mgal_genomic.gtf
+
 # index the reference genome and map reads using STAR
 # REQUIRES: conda_envs/mapreads_star_env.yml
 bash scripts/03_map_reads_star.sh

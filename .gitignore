@@ -6,4 +6,4 @@ slurm*
 *tmp*
 03_mapped_reads/*
 Log.out
-00_input/mgal_genome/*
+00_input/mgal_genome*
