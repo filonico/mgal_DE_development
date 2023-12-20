@@ -28,3 +28,16 @@ for i in 01_raw_reads/SRR*; do python3 scripts/02_trim_reads.py -d $i -adapt 00_
 
 # aggregate fastqc report into a single html file
 multiqc -o 02_trimmed_reads/01_fastqc 02_trimmed_reads/01_fastqc
+
+
+#####################
+#     MAP READS     #
+#####################
+
+# index the reference genome and map reads using STAR
+# REQUIRES: conda_envs/mapreads_star_env.yml
+bash scripts/03_map_reads_star.sh
+
+# get read mapping raw counts
+# REQUIRES: conda_envs/countgreads_stringtie_env.yml
+bash scripts/05_getcounts_stringtie.sh
