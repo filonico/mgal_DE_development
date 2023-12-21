@@ -45,3 +45,5 @@ bash scripts/03_map_reads_star.sh
 # get read mapping raw counts
 # REQUIRES: conda_envs/countgreads_stringtie_env.yml
 bash scripts/05_getcounts_stringtie.sh
+
+# run a PCA analysis on raw counts
