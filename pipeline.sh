@@ -46,4 +46,5 @@ bash scripts/03_map_reads_star.sh
 # REQUIRES: conda_envs/countgreads_stringtie_env.yml
 bash scripts/05_getcounts_stringtie.sh
 
-# run a PCA analysis on raw counts
+# normalize read counts and run a PCA analysis
+Rscript scripts/07_normalizeReads_plotPCA.R
