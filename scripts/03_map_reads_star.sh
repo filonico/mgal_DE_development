@@ -6,7 +6,7 @@ for i in 02_trimmed_reads/SRR*; do
 		-d $i \
 		-i 03_mapped_reads/01_genome_index \
 		-r 00_input/mgal_genome/GCA.900618805.1_mgal_genomic.fna \
-		-a 00_input/mgal_genome/GCA.900618805.1_mgal_genomic.gtf \
+		-a 00_input/mgal_genome/GCA.900618805.1_mgal_genomic.gff \
 		-o 03_mapped_reads
 
 done

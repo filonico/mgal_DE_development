@@ -35,15 +35,16 @@ multiqc -o 02_trimmed_reads/01_fastqc 02_trimmed_reads/01_fastqc
 #####################
 
 # Genome assembly and annotation were downloaded from https://www.ncbi.nlm.nih.gov/assembly/GCA_900618805.1
-# The GFF genome annotation file was converted into a GTF file by running the following command:
+# The GFF genome annotation file was converted into a GTF file by running the following commands:
 # agat_convert_sp_gff2gtf.pl --gff GCA.900618805.1_mgal_genomic.gff.gz -o GCA.900618805.1_mgal_genomic.gtf
+# grep -v "nbis" 00_input/mgal_genome/GCA.900618805.1_mgal_genomic.gtf > 00_input/mgal_genome/GCA.900618805.1_mgal_genomic_curated.gtf
 
 # index the reference genome and map reads using STAR
 # REQUIRES: conda_envs/mapreads_star_env.yml
 bash scripts/03_map_reads_star.sh
 
 # get read mapping raw counts
-# REQUIRES: conda_envs/countgreads_stringtie_env.yml
+# REQUIRES: conda_envs/countreads_stringtie_env.yml
 bash scripts/05_getcounts_stringtie.sh
 
 # normalize read counts and run a PCA analysis
