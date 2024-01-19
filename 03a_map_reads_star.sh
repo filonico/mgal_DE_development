@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in 02_trimmed_reads/SRR*; do
+for i in 02_trimmed_reads/SRR253874{30..39}*; do
 	
 	python3 scripts/04a_map_reads_star.py \
 		-d "$i" \

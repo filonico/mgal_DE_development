@@ -34,34 +34,25 @@ multiqc -o 02_trimmed_reads/01_fastqc 02_trimmed_reads/01_fastqc
 #     MAP READS WITH STAR     #
 ###############################
 
-# Genome assembly and annotation were downloaded from https://www.ncbi.nlm.nih.gov/assembly/GCA_900618805.1
-# The GFF genome annotation file was converted into a GTF file by running the following command:
-# agat_convert_sp_gff2gtf.pl --gff GCA.900618805.1_mgal_genomic.gff.gz -o GCA.900618805.1_mgal_genomic.gtf
-
 # index the reference genome and map reads using STAR
 # REQUIRES: conda_envs/mapreads_star_env.yml
-bash scripts/03_map_reads_star.sh
+bash scripts/03a_map_reads_star.sh
 
 # get read mapping raw counts
 # REQUIRES: conda_envs/countreads_stringtie_env.yml
-bash scripts/05_getcounts_stringtie.sh
+bash scripts/05a_getcounts_stringtie.sh
 
 
 #################################
 #     MAP READS WITH BOWTIE     #
 #################################
 
-# Genome assembly and annotation were downloaded from https://www.ncbi.nlm.nih.gov/assembly/GCA_900618805.1
-# Isoforms from the GFF genome annotation file were removed by running the following command:
-# agat_sp_keep_longest_isoform.pl -gff GCA.900618805.1_mgal_genomic.gff.gz -o GCA.900618805.1_mgal_genomic_noIso.gff
-# then isoforms where removed also from the CDS fasta file using a custom python script (see https://github.com/filonico/bivalvia_SRGs/blob/main/scripts/07_remove_isoforms_from_fasta.sh)
-
 # index transcriptome, map reads, convert sam to bam and get raw counts statistics
 # REQUIRES: conda_envs/mapreads_bowtie_env.yml
-bash scripts/03a_map_reads_bowtie.sh
+bash scripts/03b_map_reads_bowtie.sh
 
 # merge raw count statistics in one file
-bash scripts/05a_merge_rawmappings.sh
+bash scripts/05b_merge_rawmappings.sh
 
 
 ###########################
