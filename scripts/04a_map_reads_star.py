@@ -76,8 +76,8 @@ def index_genome(genomedir, genomefasta, genomegtf):
                                              "--runThreadN 15 "
                                              f"--genomeDir {genomedir} "
                                              f"--genomeFastaFiles {genomefasta} "
-                                             "--sjdbGTFtagExonParentTranscript Parent "
-                                             "--sjdbGTFtagExonParentGene ID "
+#                                             "--sjdbGTFtagExonParentTranscript Parent "
+#                                             "--sjdbGTFtagExonParentGene ID "
                                              f"--sjdbGTFfile {genomegtf}",
                                              shell = True,
                                              capture_output = True)
@@ -96,8 +96,8 @@ def map_reads(genomedir, readfiles, genomegtf, output_prefix):
                                 f"--readFilesIn {readfiles} "
                                 "--readFilesCommand zcat "
                                 f"--sjdbGTFfile {genomegtf} "
-				"--sjdbGTFtagExonParentTranscript Parent "
-				"--sjdbGTFtagExonParentGene ID "
+#				"--sjdbGTFtagExonParentTranscript Parent "
+#				"--sjdbGTFtagExonParentGene ID "
                                 f"--outFileNamePrefix {output_prefix} "
                                 "--outSAMtype BAM Unsorted SortedByCoordinate",
                                 shell = True,
