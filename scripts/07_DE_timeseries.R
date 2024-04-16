@@ -13,12 +13,35 @@ library(ggplot2)
 #     FUNCTIONS     #
 #####################
 
+# define function to normalize read counts and get a PCA analysis
+
+normalizeReads_plotPCA <- function(raw_counts_file, runs_metadata_file) {
+
+  # load raw count files
+  write("     Loading files...", stdout())
+  raw_counts <- read.csv(raw_counts_file, row.names = 1)
+
+  # load metadata and order the "Age" column
+  metadata <- read.table(runs_metadata_file, header = TRUE, sep = "\t")
+  metadata$Age <- factor(metadata$Age, levels = c("0_hpf", "4_hpf", "8_hpf", "12_hpf", "16_hpf", "20_hpf", "24_hpf",
+                                                  "28_hpf", "32_hpf", "36_hpf", "40_hpf", "44_hpf", "48_hpf",
+                                                  "52_hpf", "72_hpf"))
+
+  # generate DESeq data object
+  DESeq.ds <- DESeq2::DESeqDataSetFromMatrix(countData = raw_counts, colData = metadata, design = ~ Age)
+
+  # normalize read counts
+  write("     Normalizing read count with DESeq2 median of ratios...", stdout())
+  DESeq.ds <- DESeq2::estimateSizeFactors(DESeq.ds)
+
+  return(DESeq.ds)
+}
 
 # function to run maSigPro on single timeseries data
-timeseries_maSigPro <- function(file_norm_counts,edesign) {
+timeseries_maSigPro <- function(norm_counts,edesign) {
   
   # load normalized read counts (output from 07_PCA_rawcounts.R)
-  normalized.counts <- read.table(file_norm_counts, header = TRUE, row.names = 1, sep ="\t")
+  normalized.counts <- read.table(norm_counts, header = TRUE, row.names = 1, sep ="\t")
   
   # load edesign object
   edesign_object <- read.table(edesign, header = TRUE, sep = "\t", row.names = 1)
@@ -75,22 +98,26 @@ plot_expression_values <- function(counts,gene_list,gene_names,edesign) {
 
 #------ACTUAL CODE------------------------------------------------------------
 
+########################################
+#     RUN READ COUNT NORMALIZATION     #
+########################################
+
+write("", stdout())
+
+write("--- Analyzing gene raw counts ---", stdout())
+
+normalized_reads <- normalizeReads_plotPCA("03b_mapped_reads_BOWTIE/ALL.rawmapping.stats.csv", "00_input/SRA_metadata.tsv")
+
 
 ########################
 #     RUN MASIGPRO     #
 ########################
 
 # run maSigPro on vst normalized gene counts from all timepoints
-vstnorm_alltimepoints <- timeseries_maSigPro("03b_mapped_reads_BOWTIE/gene_counts_vstTransformed.tsv", "00_input/edesign_object.tsv")
+DE_alltimepoints <- timeseries_maSigPro(normalized_reads, "00_input/edesign_object.tsv")
 
 # run maSigPro on vst normalized gene counts from timepoints up to 24hpf
-vstnorm_24hpf <- timeseries_maSigPro("04_mapping_counts/gene_counts_vstTransformed.tsv", "00_input/edesign_object_24hpf.tsv")
-
-# run maSigPro on vst normalized gene counts from all timepoints
-rlognorm_alltimepoints <- timeseries_maSigPro("04_mapping_counts/gene_counts_rlogTransformed.tsv", "00_input/edesign_object.tsv")
-
-# run maSigPro on vst normalized gene counts from timepoints up to 24hpf
-rlognorm_24hpf <- timeseries_maSigPro("04_mapping_counts/gene_counts_rlogTransformed.tsv", "00_input/edesign_object_24hpf.tsv")
+DE_24hpf <- timeseries_maSigPro(normalized_reads, "00_input/edesign_object_24hpf.tsv")
 
 
 ####################################
