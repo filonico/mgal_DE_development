@@ -9,3 +9,4 @@ Log.out
 slurm*
 *temp*
 *tmp*
+04_PCA_readcounts/*

@@ -54,6 +54,11 @@ bash scripts/03b_map_reads_bowtie.sh
 # merge raw count statistics in one file
 bash scripts/05b_merge_rawmappings.sh
 
+# perform PCA analysis on read counts
+# REQUIRES: conda_envs/R_env.yml
+mkdir 04_PCA_readcounts
+Rscript scripts/06_plotPCA_readcounts.R
+
 
 ###########################
 #     RUN DE ANALYSIS     #
@@ -61,3 +66,5 @@ bash scripts/05b_merge_rawmappings.sh
 
 # normalize read counts and run a PCA analysis
 Rscript scripts/07_PCA_rawcounts.R
+
+
