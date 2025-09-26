@@ -94,7 +94,7 @@ def map_reads(genomedir, readfiles, genomegtf, output_prefix):
                                 "--runThreadN 15 "
                                 f"--genomeDir {genomedir} "
                                 f"--readFilesIn {readfiles} "
-                                "--readFilesCommand zcat "
+#                                "--readFilesCommand zcat "
                                 f"--sjdbGTFfile {genomegtf} "
 				"--sjdbGTFtagExonParentTranscript Parent "
 				"--sjdbGTFtagExonParentGene ID "
@@ -170,9 +170,9 @@ print()
 print(f"-- {ACC} --")
 
 if args.input_dir.endswith("/"):
-    READFILES = args.input_dir + "*_paired.fastq.gz"
+    READFILES = args.input_dir + "*_paired.fastq"
 else:
-    READFILES = args.input_dir + "/*_paired.fastq.gz"
+    READFILES = args.input_dir + "/*_paired.fastq"
 
 OUTPUT_PREFIX = args.output_dir + "/" + ACC + "_"
 

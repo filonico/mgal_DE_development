@@ -5,8 +5,8 @@
 #
 # Note that the structure of the input directory should be as follow:
 # AccNo/
-# ├── AccNo_1_paired.fastq.gz
-# └── AccNo_2_paired.fastq.gz
+# ├── AccNo_1_paired.fastq
+# └── AccNo_2_paired.fastq
 # This format can be easily obtained using the script https://github.com/filonico/misc_scripts/blob/main/trim_reads.py
 #
 # The script creates an output directory structured as follow:
@@ -36,7 +36,7 @@ import subprocess, argparse, sys, os
 parser = argparse.ArgumentParser(description = "Map reads against a reference transcriptome using bowtie, than index and sort the resulting bam file.")
 
 # Define some options/arguments/parameters
-parser.add_argument("-d", "--input_dir", required = True, help = "Directory containing trimmed paired fastq files to map. Note that the structure of input directory should be as follow: input_dir/{input_dir_1.fastq.gz, input_dir_2.fastq.gz}")
+parser.add_argument("-d", "--input_dir", required = True, help = "Directory containing trimmed paired fastq files to map. Note that the structure of input directory should be as follow: input_dir/{input_dir_1.fastq, input_dir_2.fastq}")
 parser.add_argument("-ref", "--reference_transcriptome", required = True, help = "Reference transcriptome used to map reads.")
 parser.add_argument("-o", "--output_dir", help = "Name of the output directory.")
 
@@ -62,7 +62,7 @@ def index_transcriptome(transcriptome):
 def map_reads(input_directory, acc, indexed_transcriptome, output_directory):
     try:
         bowtie_process = subprocess.run(f"bowtie2 -x {indexed_transcriptome} "
-                                        f"-1 {input_directory}/{acc}_1_paired.fastq.gz -2 {input_directory}/{acc}_2_paired.fastq.gz "
+                                        f"-1 {input_directory}/*1_paired.fastq -2 {input_directory}/*2_paired.fastq "
                                         f"-S {output_directory}/{acc}.mapped.sam --no-discordant -p 30 "
                                         f"2> {output_directory}/{acc}.mapped.log",
                                         shell = True,

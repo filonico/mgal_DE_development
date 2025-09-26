@@ -52,7 +52,7 @@ bash scripts/05a_getcounts_stringtie.sh
 bash scripts/03b_map_reads_bowtie.sh
 
 # merge raw count statistics in one file
-bash scripts/05b_merge_rawmappings.sh
+scripts/05b_merge_rawmappings_bowtie.sh
 
 # perform PCA analysis on read counts
 # REQUIRES: conda_envs/R_env.yml
