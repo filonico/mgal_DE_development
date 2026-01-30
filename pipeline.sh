@@ -64,7 +64,7 @@ Rscript scripts/06_plotPCA_readcounts.R
 #     RUN DE ANALYSIS     #
 ###########################
 
+mkdir 05_masigpro_analysis
+
 # normalize read counts and run a PCA analysis
-Rscript scripts/07_PCA_rawcounts.R
-
-
+Rscript scripts/07_DE_timeseries.R

@@ -10,3 +10,5 @@ slurm*
 *temp*
 *tmp*
 04_PCA_readcounts/*
+05_masigpro_analysis/*
+vasa_piwi_nanos_diamond.tsv

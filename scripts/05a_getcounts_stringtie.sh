@@ -45,7 +45,7 @@ for i in 03a_mapped_reads_STAR/*sortedByCoord.out.bam; do
         ACC="$(basename $i | awk -F "_" '{print $1}')"
 
         # run stringtie
-	stringtie "$i" -e -G "$MERGED_GTF" -o "$OUTDIR"/"$ACC"_stringtie_round2.gtf -p 15 2> "$OUTDIR"/"$ACC"_stringtie_round2.log
+		stringtie "$i" -e -G "$MERGED_GTF" -o "$OUTDIR"/"$ACC"_stringtie_round2.gtf -p 15 2> "$OUTDIR"/"$ACC"_stringtie_round2.log
 
         echo -e '\t'"$ACC": done
 
