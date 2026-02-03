@@ -12,3 +12,5 @@ slurm*
 04_PCA_readcounts/*
 05_masigpro_analysis/*
 vasa_piwi_nanos_diamond.tsv
+.Rhistory
+vasa_piwi_nanos_spPHI_diamond.tsv
