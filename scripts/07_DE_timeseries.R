@@ -4,11 +4,11 @@ if (!requireNamespace("BiocManager", quietly=TRUE)) {
   BiocManager::install("maSigPro")
 }
 
-library(tidyr)
-library(dplyr)
-library(tibble)
-library(ggplot2)
+library(tidyverse)
 library(maSigPro)
+
+library(GOSemSim)
+library(smacof)
 
 setwd("/data/evassvis/fn76/mgal_DE_development")
 
@@ -292,6 +292,7 @@ vst.expr.plot
 #     PLOT MASIGPRO CLUSTERS     #
 ##################################
 
+# labels for plot strips
 labeller_cluster <- vstnorm_alltimepoints$visualization_genes$cut %>%
   tibble(group = .) %>%
   group_by(group) %>%
@@ -303,6 +304,7 @@ labeller_cluster <- vstnorm_alltimepoints$visualization_genes$cut %>%
   deframe() %>%
   as_labeller()
 
+# create dataframe to be plotted
 data_to_plot <- vstnorm_alltimepoints$visualization_genes$cut %>%
   tibble(gene = names(.),
          group = .) %>%
@@ -313,7 +315,7 @@ data_to_plot <- vstnorm_alltimepoints$visualization_genes$cut %>%
               rownames_to_column(var = "sample") %>%
               select(sample, Time))
 
-# gene-level mean per timepoint (grey lines)
+# calculate mean expression values for each gene (grey lines)
 gene_mean <- data_to_plot %>%
   group_by(gene, group, Time) %>%
   summarise(profile_mean = mean(profile), .groups = "drop") %>%
@@ -321,11 +323,12 @@ gene_mean <- data_to_plot %>%
                                gene == "Mgal_VDI80212.1" ~ "nanos",
                                gene == "Mgal_VDI83778.1" ~ "piwi-b",
                                gene == "Mgal_VDI56617.1" ~ "spPHI",
+                               gene == "Mgal_VDI49864.1" ~ "FoxL2",
                                TRUE ~ "Other genes")) %>%
   mutate(line_type = factor(line_type,
-                            levels = c("vasa", "nanos", "piwi-b", "spPHI", "Other genes", "Mean expression")))
+                            levels = c("vasa", "nanos", "piwi-b", "spPHI", "FoxL2", "Other genes", "Mean expression")))
 
-# group-level mean per timepoint (red line)
+# calculate mean expression values for each cluster (dashed lines)
 group_mean <- data_to_plot %>%
   group_by(group, Time) %>%
   summarise(mean_profile = mean(profile),
@@ -335,6 +338,7 @@ group_mean <- data_to_plot %>%
          ymax = mean_profile + sd_profile,
          line_type = "Mean expression")
 
+# create plot
 masigpro_groups_panel <- ggplot() +
   
   # grey gene lines
@@ -375,6 +379,12 @@ masigpro_groups_panel <- ggplot() +
               filter(gene == "Mgal_VDI56617.1"),
             aes(x = Time, y = profile_mean, group = gene, color = line_type),
             linewidth = 0.5, lineend = "round") +
+
+  # FoxL2 line
+  geom_line(data = gene_mean %>%
+              filter(gene == "Mgal_VDI49864.1"),
+            aes(x = Time, y = profile_mean, group = gene, color = line_type),
+            linewidth = 0.5, lineend = "round") +
   
   scale_color_manual(name = "Line type",
                      values = c("Other genes" = "azure3",
@@ -382,6 +392,7 @@ masigpro_groups_panel <- ggplot() +
                                 "nanos" = "chocolate1",
                                 "piwi-b" = "darkorchid1",
                                 "spPHI" = "deeppink1",
+                                "FoxL2" = "gold1",
                                 "Mean expression" = "azure4")) +
   
   scale_x_continuous(breaks = unique(gene_mean$Time), expand = c(0, 0)) +
@@ -398,7 +409,7 @@ masigpro_groups_panel <- ggplot() +
 
 masigpro_groups_panel
 
-
+# save panel
 ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.pdf",
        plot = masigpro_groups_panel, device = "pdf",
        dpi = 300, height = 6, width = 9, units = ("in"), bg = "white")
@@ -408,3 +419,30 @@ ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.png",
        dpi = 300, height = 6, width = 10, units = ("in"), bg = "white")
   
 save.image(file = "05_masigpro_analysis/DE_timeseries.Rdata")
+load("05_masigpro_analysis/DE_timeseries.Rdata")
+
+
+#######################################
+#     SAVE CLUSTER GENES TO FILES     #
+#######################################
+
+# get the list of genes per cluster
+gene_lists <- data_to_plot %>%
+  select(group, gene) %>%
+  distinct(group, gene) %>%
+  group_by(group) %>%
+  summarise(genes = list(gene), .groups = "drop") %>%
+  deframe()
+  { setNames(.$group, .$genes) }
+
+# write the list of genes per cluster to separate files
+for (cluster in names(gene_lists)) {
+  file_path <- paste0("05_masigpro_analysis/01_genes_per_cluster/cluster_", cluster, "_genes.ls")
+  writeLines(gene_lists[[cluster]],
+             file_path)
+}
+
+vstnorm_alltimepoints$counts %>%
+  rownames_to_column(var = "genes") %>%
+  pull(genes) %>%
+  writeLines("05_masigpro_analysis/01_genes_per_cluster/gene_universe.ls")
