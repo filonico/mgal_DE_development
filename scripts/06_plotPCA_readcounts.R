@@ -97,7 +97,7 @@ normalizeReads_plotPCA <- function(raw_counts_file, runs_metadata_file) {
 
 write("", stdout())
 write("--- Analyzing gene raw counts ---", stdout())
-gene_counts_results <- normalizeReads_plotPCA("03b_mapped_reads_BOWTIE/ALL.rawmapping.stats.csv", "00_input/SRA_metadata.tsv")
+gene_counts_results <- normalizeReads_plotPCA("03a_mapped_reads_STAR/ ALL.rawmapping.stats.csv", "00_input/SRA_metadata.tsv")
 
 write("     Saving normalized read counts to files...", stdout())
 write.table(gene_counts_results$rld_table, file = "04_PCA_readcounts/gene_counts_rlogTransformed_norm.tsv", sep = "\t", quote = FALSE)

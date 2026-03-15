@@ -319,14 +319,14 @@ data_to_plot <- vstnorm_alltimepoints$visualization_genes$cut %>%
 gene_mean <- data_to_plot %>%
   group_by(gene, group, Time) %>%
   summarise(profile_mean = mean(profile), .groups = "drop") %>%
-  mutate(line_type = case_when(gene == "Mgal_VDI03912.1" ~ "vasa",
-                               gene == "Mgal_VDI80212.1" ~ "nanos",
-                               gene == "Mgal_VDI83778.1" ~ "piwi-b",
+  mutate(line_type = case_when(gene == "Mgal_VDI03912.1" ~ "Vasa",
+                               gene == "Mgal_VDI80212.1" ~ "Nanos",
+                               gene == "Mgal_VDI83778.1" ~ "Piwi-b",
                                gene == "Mgal_VDI56617.1" ~ "spPHI",
-                               gene == "Mgal_VDI49864.1" ~ "FoxL2",
+                               gene == "Mgal_VDI49864.1" ~ "Fox-L2",
                                TRUE ~ "Other genes")) %>%
   mutate(line_type = factor(line_type,
-                            levels = c("vasa", "nanos", "piwi-b", "spPHI", "FoxL2", "Other genes", "Mean expression")))
+                            levels = c("Vasa", "Nanos", "Piwi-b", "spPHI", "Fox-L2", "Other genes", "Mean expression")))
 
 # calculate mean expression values for each cluster (dashed lines)
 group_mean <- data_to_plot %>%
@@ -386,13 +386,13 @@ masigpro_groups_panel <- ggplot() +
             aes(x = Time, y = profile_mean, group = gene, color = line_type),
             linewidth = 0.5, lineend = "round") +
   
-  scale_color_manual(name = "Line type",
+  scale_color_manual(name = "Gene",
                      values = c("Other genes" = "azure3",
-                                "vasa" = "firebrick1",
-                                "nanos" = "chocolate1",
-                                "piwi-b" = "darkorchid1",
+                                "Vasa" = "firebrick1",
+                                "Nanos" = "chocolate1",
+                                "Piwi-b" = "darkorchid1",
                                 "spPHI" = "deeppink1",
-                                "FoxL2" = "gold1",
+                                "Fox-L2" = "gold1",
                                 "Mean expression" = "azure4")) +
   
   scale_x_continuous(breaks = unique(gene_mean$Time), expand = c(0, 0)) +

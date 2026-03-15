@@ -81,4 +81,11 @@ grep -v "!" 00_input/mgal_proteome_GOannotation.tsv > 05_masigpro_analysis/01_ge
 # perform GO enrichment for each cluster
 for i in 05_masigpro_analysis/01_genes_per_cluster/cluster*tsv; do Rscript scripts/08_perform_GOenrich.R 05_masigpro_analysis/01_genes_per_cluster/gene_universe_GOterms.tsv $i "${i%%.*}"_; done
 
-# plot GO enrich
+
+###################
+#     ML VASA     #
+###################
+
+# build reference hmm, align, trim and run ML analysis
+# REQUIRES: conda_envs/phylo_env.yml
+bash scripts/09_vasa_ML.sh
