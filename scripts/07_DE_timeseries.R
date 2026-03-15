@@ -292,13 +292,15 @@ vst.expr.plot
 #     PLOT MASIGPRO CLUSTERS     #
 ##################################
 
+load(file = "05_masigpro_analysis/DE_timeseries.Rdata")
+
 # labels for plot strips
 labeller_cluster <- vstnorm_alltimepoints$visualization_genes$cut %>%
   tibble(group = .) %>%
   group_by(group) %>%
   summarise(n_genes = n()) %>%
   ungroup() %>%
-  mutate(label = paste0("Cluster ", group,
+  mutate(label = paste0("Module ", group,
                         " (", format(n_genes, big.mark = ","), " genes)")) %>%
   select(-n_genes) %>%
   deframe() %>%
@@ -413,8 +415,15 @@ masigpro_groups_panel
 ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.pdf",
        plot = masigpro_groups_panel, device = "pdf",
        dpi = 300, height = 6, width = 9, units = ("in"), bg = "white")
-
 ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.png",
+       plot = masigpro_groups_panel, device = "png",
+       dpi = 300, height = 6, width = 10, units = ("in"), bg = "white")
+
+ggsave("07_figures_for_ms/Supp_Fig_S3.pdf",
+       plot = masigpro_groups_panel, device = "pdf",
+       dpi = 300, height = 6, width = 9, units = ("in"), bg = "white")
+
+ggsave("07_figures_for_ms/Supp_Fig_S3.png",
        plot = masigpro_groups_panel, device = "png",
        dpi = 300, height = 6, width = 10, units = ("in"), bg = "white")
   
