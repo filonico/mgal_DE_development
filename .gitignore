@@ -17,3 +17,7 @@ vasa_piwi_nanos_spPHI_diamond.tsv
 06_figures_for_ms/*
 06_vasa_ML/*
 07_figures_for_ms/*
+slurm*
+07_HCR_probes/*
+08_figures_for_ms/*
+download_reads.sh

@@ -1,0 +1,19 @@
+UYJE01001633.1	EMBL	gene	17556	28314	.	-	.	ID=gene-MGAL_10B093608;Note=MGAL_10B093608T1;gbkey=mRNA;locus_tag=MGAL_10B093608
+UYJE01001633.1	EMBL	mRNA	17556	28314	.	-	.	ID=rna-MGAL_10B093608;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;gbkey=mRNA;locus_tag=MGAL_10B093608
+UYJE01001633.1	EMBL	mRNA	17556	28314	.	-	.	ID=gene-MGAL_10B093608;Parent=nbis-gene-44030;Name=MGAL_10B093608;gbkey=Gene;gene_biotype=protein_coding;locus_tag=MGAL_10B093608
+UYJE01001633.1	EMBL	exon	17556	18939	.	-	.	ID=id-MGAL_10B093608-7;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=7;gbkey=exon;locus_tag=MGAL_10B093608;number=7
+UYJE01001633.1	EMBL	exon	19569	19618	.	-	.	ID=id-MGAL_10B093608-6;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=6;gbkey=exon;locus_tag=MGAL_10B093608;number=6
+UYJE01001633.1	EMBL	exon	21083	21119	.	-	.	ID=id-MGAL_10B093608-5;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=5;gbkey=exon;locus_tag=MGAL_10B093608;number=5
+UYJE01001633.1	EMBL	exon	22367	22455	.	-	.	ID=id-MGAL_10B093608-4;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=4;gbkey=exon;locus_tag=MGAL_10B093608;number=4
+UYJE01001633.1	EMBL	exon	23342	23521	.	-	.	ID=id-MGAL_10B093608-3;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=3;gbkey=exon;locus_tag=MGAL_10B093608;number=3
+UYJE01001633.1	EMBL	exon	25867	26117	.	-	.	ID=id-MGAL_10B093608-2;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=2;gbkey=exon;locus_tag=MGAL_10B093608;number=2
+UYJE01001633.1	EMBL	exon	28235	28314	.	-	.	ID=id-MGAL_10B093608-1;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=1;gbkey=exon;locus_tag=MGAL_10B093608;number=1
+UYJE01001633.1	EMBL	CDS	18796	18939	.	-	0	ID=cds-VDI03798.1;Parent=gene-MGAL_10B093608;Dbxref=NCBI_GP:VDI03798.1;Name=VDI03798.1;Note=long variant%3B~MGAL_10B093608T1;gbkey=CDS;locus_tag=MGAL_10B093608;product=Hypothetical predicted protein;protein_id=VDI03798.1
+UYJE01001633.1	EMBL	CDS	19569	19618	.	-	2	ID=cds-VDI03798.1;Parent=gene-MGAL_10B093608;Dbxref=NCBI_GP:VDI03798.1;Name=VDI03798.1;Note=long variant%3B~MGAL_10B093608T1;gbkey=CDS;locus_tag=MGAL_10B093608;product=Hypothetical predicted protein;protein_id=VDI03798.1
+UYJE01001633.1	EMBL	CDS	21083	21119	.	-	0	ID=cds-VDI03798.1;Parent=gene-MGAL_10B093608;Dbxref=NCBI_GP:VDI03798.1;Name=VDI03798.1;Note=long variant%3B~MGAL_10B093608T1;gbkey=CDS;locus_tag=MGAL_10B093608;product=Hypothetical predicted protein;protein_id=VDI03798.1
+UYJE01001633.1	EMBL	CDS	22367	22455	.	-	2	ID=cds-VDI03798.1;Parent=gene-MGAL_10B093608;Dbxref=NCBI_GP:VDI03798.1;Name=VDI03798.1;Note=long variant%3B~MGAL_10B093608T1;gbkey=CDS;locus_tag=MGAL_10B093608;product=Hypothetical predicted protein;protein_id=VDI03798.1
+UYJE01001633.1	EMBL	CDS	23342	23521	.	-	2	ID=cds-VDI03798.1;Parent=gene-MGAL_10B093608;Dbxref=NCBI_GP:VDI03798.1;Name=VDI03798.1;Note=long variant%3B~MGAL_10B093608T1;gbkey=CDS;locus_tag=MGAL_10B093608;product=Hypothetical predicted protein;protein_id=VDI03798.1
+UYJE01001633.1	EMBL	CDS	25867	26116	.	-	0	ID=cds-VDI03798.1;Parent=gene-MGAL_10B093608;Dbxref=NCBI_GP:VDI03798.1;Name=VDI03798.1;Note=long variant%3B~MGAL_10B093608T1;gbkey=CDS;locus_tag=MGAL_10B093608;product=Hypothetical predicted protein;protein_id=VDI03798.1
+UYJE01001633.1	EMBL	five_prime_UTR	26117	26117	.	-	.	ID=nbis-five_prime_utr-17461;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=7;gbkey=exon;locus_tag=MGAL_10B093608;number=7
+UYJE01001633.1	EMBL	five_prime_UTR	28235	28314	.	-	.	ID=nbis-five_prime_utr-17461;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=7;gbkey=exon;locus_tag=MGAL_10B093608;number=7
+UYJE01001633.1	EMBL	three_prime_UTR	17556	18795	.	-	.	ID=nbis-three_prime_utr-18814;Parent=gene-MGAL_10B093608;Note=MGAL_10B093608T1;exon_number=7;gbkey=exon;locus_tag=MGAL_10B093608;number=7

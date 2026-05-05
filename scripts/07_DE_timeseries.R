@@ -240,54 +240,6 @@ save.image(file = "05_masigpro_analysis/DE_timeseries.Rdata")
 # rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:  YES, cluster 4
 
 
-################################
-#     PLOT GENE EXPRESSION     #
-################################
-
-load(file = "05_masigpro_analysis/DE_timeseries.Rdata")
-
-# generate gene conversion dataframe
-gene_names <- data.frame(gene = c("gene-MGAL_10B017427", "gene-MGAL_10B086491", "gene-MGAL_10B073040", "gene-MGAL_10B064020", "gene-MGAL_10B067558", "gene-MGAL_10B093608","gene-MGAL_10B014180","gene-MGAL_10B094018","gene-MGAL_10B085403","gene-MGAL_10B093191"),
-                         stringtie = c("MSTRG.9718", NA, NA, NA, NA, "MSTRG.9631", "MSTRG.26773", "MSTRG.38958", "MSTRG.41862", "MSTRG.30071"),
-                         cds = c("Mgal_VDI03912.1", "Mgal_VDI80212.1", "Mgal_VDI60324.1", "Mgal_VDI83778.1", "Mgal_VDI56617.1", "Mgal_VDI03798.1", "Mgal_VDI30824.1", "Mgal_VDI49864.1", "Mgal_VDI54402.1", "Mgal_VDI35942.1"),
-                         name = c("Vasa", "Nanos", "Piwia", "Piwib", "spPHI", "Dmrt1L", "SoxH", "FoxL2", "Wnt8a", "FoxB2"))
-
-
-vst.expr.plot <- plot_expression_values(vstnorm_alltimepoints$counts,
-                                        c("Mgal_VDI03912.1", "Mgal_VDI80212.1", "Mgal_VDI56617.1"),
-                                        # gene_names$cds,
-                                        gene_names,
-                                        vstnorm_alltimepoints$edesign) +
-  # scale_colour_manual(values = c("Red", "Cyan", "Magenta", "Yellow", "Grey", "Grey")) +
-  # scale_linetype_manual(values = c(rep("solid", 4), rep("dashed", 2))) +
-  ggtitle("Vst transformed gene expression") +
-  labs(color = "Gene", linetype = "Gene") +
-  theme_bw(base_size = 12) +
-  theme_for_plots
-
-vst.expr.plot
-
-# ggsave("03b_mapped_reads_BOWTIE/vstgene_expression.pdf", plot = vst.expr.plot, device = "pdf",
-       # dpi = 300, height = 4.7, width = 6, units = ("in"), bg = 'transparent')
-
-# ggsave("03b_mapped_reads_BOWTIE/vstgene_expression.png", plot = vst.expr.plot, device = "png",
-       # dpi = 300, height = 4.7, width = 6, units = ("in"), bg = 'transparent')
-
-
-
-# rlog.expr.plot <- plot_expression_values(rlognorm_alltimepoints$counts,
-                                        # gene_names$cds,
-                                        # gene_names,
-                                        # rlognorm_alltimepoints$edesign) +
-  # ggtitle("Rlog transformed gene expression")
-
-
-# panel <- ggpubr::ggarrange(rlog.expr.plot, vst.expr.plot,
-                           # ncol = 2, nrow = 1,
-                           # common.legend = TRUE, legend = "right")
-# panel
-
-
 ##################################
 #     PLOT MASIGPRO CLUSTERS     #
 ##################################
@@ -358,29 +310,29 @@ masigpro_groups_panel <- ggplot() +
             aes(x = Time, y = mean_profile, group = group, color = line_type),
             linewidth = 0.3, linetype = "dashed", lineend = "round") +
   
+    # nanos line
+  geom_line(data = gene_mean %>%
+              filter(gene == "Mgal_VDI80212.1"),
+            aes(x = Time, y = profile_mean, group = gene, color = line_type),
+            linewidth = 0.6, lineend = "round") +
+  
   # vasa line
   geom_line(data = gene_mean %>%
               filter(gene == "Mgal_VDI03912.1"),
             aes(x = Time, y = profile_mean, group = gene, color = line_type),
-            linewidth = 0.5, lineend = "round") +
-  
-  # nanos line
-  geom_line(data = gene_mean %>%
-              filter(gene == "Mgal_VDI80212.1"),
-            aes(x = Time, y = profile_mean, group = gene, color = line_type),
-            linewidth = 0.5, lineend = "round") +
+            linewidth = 0.6, lineend = "round") +
   
   # piwib line
   geom_line(data = gene_mean %>%
               filter(gene == "Mgal_VDI83778.1"),
             aes(x = Time, y = profile_mean, group = gene, color = line_type),
-            linewidth = 0.5, lineend = "round") +
+            linewidth = 0.6, lineend = "round") +
   
   # spPHI line
   geom_line(data = gene_mean %>%
               filter(gene == "Mgal_VDI56617.1"),
             aes(x = Time, y = profile_mean, group = gene, color = line_type),
-            linewidth = 0.5, lineend = "round") +
+            linewidth = 0.6, lineend = "round") +
 
   # FoxL2 line
   geom_line(data = gene_mean %>%
@@ -390,12 +342,18 @@ masigpro_groups_panel <- ggplot() +
   
   scale_color_manual(name = "Gene",
                      values = c("Other genes" = "azure3",
-                                "Vasa" = "firebrick1",
-                                "Nanos" = "chocolate1",
-                                "Piwi-b" = "darkorchid1",
-                                "spPHI" = "deeppink1",
-                                "Fox-L2" = "gold1",
-                                "Mean expression" = "azure4")) +
+                                "Vasa" = "#d53200",
+                                "Nanos" = "#0072b2",
+                                "Piwi-b" = "#cc79a7",
+                                "spPHI" = "#009e73",
+                                "Fox-L2" = "#e69f00",
+                                "Mean expression" = "azure4"),
+                     labels = c("Vasa" = expression(italic("Vasa")),
+                                "Nanos" = expression(italic("Nanos")),
+                                "Piwi-b" = expression(italic("Piwi-b")),
+                                "spPHI" = expression(italic("spPHI")),
+                                "Fox-L2" = expression(italic("Fox-L2")),
+                                "Mean expression" = "Mean transcription")) +
   
   scale_x_continuous(breaks = unique(gene_mean$Time), expand = c(0, 0)) +
   
@@ -422,7 +380,6 @@ ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.png",
 ggsave("07_figures_for_ms/Supp_Fig_S3.pdf",
        plot = masigpro_groups_panel, device = "pdf",
        dpi = 300, height = 6, width = 9, units = ("in"), bg = "white")
-
 ggsave("07_figures_for_ms/Supp_Fig_S3.png",
        plot = masigpro_groups_panel, device = "png",
        dpi = 300, height = 6, width = 10, units = ("in"), bg = "white")

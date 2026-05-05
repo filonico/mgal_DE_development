@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##############################
-#     Download raw reads     #
+#     DOWNLOAD RAW READS     #
 ##############################
 
 mkdir -p 01_raw_reads/01_fastqc

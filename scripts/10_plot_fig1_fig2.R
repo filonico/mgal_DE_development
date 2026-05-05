@@ -28,7 +28,7 @@ plot_module_expression_values <- function(data_to_plot, cluster) {
     # mean line
     geom_line(data = group_mean %>% filter(group %in% cluster),
               aes(x = Time, y = mean_profile, group = group, color = line_type),
-              linewidth = 0.3, linetype = "dashed", lineend = "round") +
+              linewidth = 0.6, linetype = "dashed", lineend = "round") +
     
     # nanos line
     geom_line(data = data_to_plot %>% filter(group %in% cluster) %>%
@@ -59,22 +59,28 @@ plot_module_expression_values <- function(data_to_plot, cluster) {
                 filter(gene == "Mgal_VDI49864.1"),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               linewidth = 1, lineend = "round") +
-    
+
     scale_color_manual(name = "Genes",
                        values = c("Other genes" = "azure3",
-                                  "Vasa" = "firebrick1",
-                                  "Nanos" = "chocolate1",
-                                  "Piwi-b" = "darkorchid1",
-                                  "spPHI" = "deeppink1",
-                                  "Fox-L2" = "gold1",
-                                  "Mean expr" = "azure4")) +
-    
+                                  "Vasa" = "#d53200",
+                                  "Nanos" = "#0072b2",
+                                  "Piwi-b" = "#cc79a7",
+                                  "spPHI" = "#009e73",
+                                  "Fox-L2" = "#e69f00",
+                                  "Mean expr" = "azure4"),
+                       labels = c("Vasa" = expression(italic("Vasa")),
+                                  "Nanos" = expression(italic("Nanos")),
+                                  "Piwi-b" = expression(italic("Piwi-b")),
+                                  "spPHI" = expression(italic("spPHI")),
+                                  "Fox-L2" = expression(italic("Fox-L2")),
+                                  "Other genes" = "Other", "Mean expr" = "Mean")) +
+
     # scale_x_continuous(breaks = unique(data_to_plot$Time), expand = c(0, 0)) +
     scale_x_discrete(expand = c(0, 0), labels = c("0" = "Oocyte")) +
-    
+
     xlab("Hours post fertilization (hpf)") +
     ylab("Normalized expression value") +
-    
+
     theme_minimal(base_size = 12) +
     theme_for_plots +
     theme(panel.spacing.x = unit(1, "lines"),
@@ -82,6 +88,8 @@ plot_module_expression_values <- function(data_to_plot, cluster) {
   
   return(masigpro_expression)
 }
+
+plot_module_expression_values(gene_mean %>% mutate(Time = as_factor(Time)), "3")
 
 get_GOterm_semantic_mds <- function(goterm_enrich_file) {
   
@@ -167,7 +175,6 @@ md_arrows <- list(
 
 
 theme_for_plots <- theme(
-  # aspect.ratio = 1,
   plot.background = element_rect(fill = "transparent", colour = NA), 
   panel.background = element_blank(),
   panel.grid.minor = element_blank(),
@@ -179,7 +186,7 @@ theme_for_plots <- theme(
   # legend.key.height = unit(.4, "cm"),
   legend.position = "right",
   legend.title = element_text(face = "bold"),
-  # plot.title = element_text(size = 13, hjust = 0.0, vjust = 1.75, face = "bold"),
+  plot.title = element_text(size = 12, face = "bold"),
   axis.line = element_blank(),
   axis.ticks = element_line(colour = "black", linewidth = .4),
   axis.ticks.length = unit(0.10, "cm"),
@@ -193,8 +200,6 @@ theme_for_plots <- theme(
                               margin = margin(t = 10, r = 0, b = 0, l = 0)),
   strip.text = element_text(color = "black", face = "bold", hjust = 0),
   strip.placement = "outside"
-  # strip.background = element_rect(color = "black", linewidth = .6, linetype = "solid"),
-  # strip.text.x = element_text(color = "black")
 )
 
 
@@ -206,13 +211,18 @@ load("05_masigpro_analysis/DE_timeseries.Rdata")
 
 group_mean <- group_mean %>% mutate(Time = as_factor(Time), line_type = "Mean expr")
 
-cluster2_3_expression <- plot_module_expression_values(gene_mean %>% mutate(Time = as_factor(Time)), c("2", "3"))
+cluster2_3_expression <- plot_module_expression_values(gene_mean %>%
+                                                         mutate(Time = as_factor(Time)), c("2", "3"))
 cluster2_3_expression
 
-cluster_3_expression <- plot_module_expression_values(gene_mean %>% mutate(Time = as_factor(Time)), "3")
+cluster_3_expression <- plot_module_expression_values(gene_mean %>%
+                                                        mutate(Time = as_factor(Time)), "3") +
+  ggtitle("maSigPro Module 3")
 cluster_3_expression
 
-cluster_4_expression <- plot_module_expression_values(gene_mean %>% mutate(Time = as_factor(Time)), "4")
+cluster_4_expression <- plot_module_expression_values(gene_mean %>%
+                                                        mutate(Time = as_factor(Time)), "4") +
+  ggtitle("maSigPro Module 4")
 cluster_4_expression
 
 
@@ -402,10 +412,10 @@ panel_vasa <- ggpubr::ggarrange(cluster_3_expression + theme(axis.title.x = elem
 panel_vasa
 
 
-ggsave("06_figures_for_ms/fig1_panel.pdf",
+ggsave("07_figures_for_ms/fig1_panel.pdf",
        plot = panel_vasa, device = "pdf",
        dpi = 300, height = 6/1.5, width = 20/1.5, units = ("in"), bg = "transparent")
-ggsave("06_figures_for_ms/fig1_panel.png",
+ggsave("07_figures_for_ms/fig1_panel.png",
        plot = panel_vasa, device = "png",
        dpi = 300, height = 6/1.5, width = 20/1.5, units = ("in"), bg = "transparent")
 
@@ -416,9 +426,9 @@ panel_foxl2 <- ggpubr::ggarrange(cluster_4_expression + theme(axis.title.x = ele
 panel_foxl2
 
 
-ggsave("06_figures_for_ms/fig2_panel.pdf",
+ggsave("07_figures_for_ms/fig2_panel.pdf",
        plot = panel_foxl2, device = "pdf",
        dpi = 300, height = 6/1.5, width = 20/1.5, units = ("in"), bg = "transparent")
-ggsave("06_figures_for_ms/fig2_panel.png",
+ggsave("07_figures_for_ms/fig2_panel.png",
        plot = panel_foxl2, device = "png",
        dpi = 300, height = 6/1.5, width = 20/1.5, units = ("in"), bg = "transparent")
