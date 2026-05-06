@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/miniforge3/bin/activate mapreads_star_env 
+
 for i in 02_trimmed_reads/SRR*; do
 	
 	python3 scripts/04a_map_reads_star.py \

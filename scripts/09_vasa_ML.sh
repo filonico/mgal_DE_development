@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/miniforge3/bin/activate phylo_env 
+
 # build hmm profile of Pfam DEAD/HEAD box domain
 hmmbuild 00_input/PF00270.alignment.full.hmm 00_input/PF00270.alignment.full.stk
 

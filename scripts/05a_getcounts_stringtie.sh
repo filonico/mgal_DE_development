@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/miniforge3/bin/activate countreads_stringtie_env 
+
 # check if directories and files already exist
 # if [ ! -d 03a_mapped_reads_STAR/ ]; then
 # 	mkdir 03a_mapped_reads_STAR

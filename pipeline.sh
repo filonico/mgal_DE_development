@@ -67,6 +67,7 @@ Rscript scripts/06_plotPCA_readcounts.R
 mkdir -p 05_masigpro_analysis/01_genes_per_cluster/
 
 # normalize read counts and run a PCA analysis
+# REQUIRES: conda_envs/R_env.yml
 Rscript scripts/07_DE_timeseries.R
 
 
@@ -79,6 +80,7 @@ for i in 05_masigpro_analysis/01_genes_per_cluster/cluster*ls; do grep -wf $i 00
 grep -v "!" 00_input/mgal_proteome_GOannotation.tsv > 05_masigpro_analysis/01_genes_per_cluster/gene_universe_GOterms.tsv
 
 # perform GO enrichment for each cluster
+# REQUIRES: conda_envs/R_env.yml
 for i in 05_masigpro_analysis/01_genes_per_cluster/cluster*tsv; do Rscript scripts/08_perform_GOenrich.R 05_masigpro_analysis/01_genes_per_cluster/gene_universe_GOterms.tsv $i "${i%%.*}"_; done
 
 

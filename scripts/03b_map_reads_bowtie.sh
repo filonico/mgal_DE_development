@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ~/miniforge3/bin/activate mapreads_bowtie_env 
+
 for i in 02_trimmed_reads/SRR*; do
 	
 	python scripts/04b_map_reads_bowtie.py \
