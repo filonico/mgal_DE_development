@@ -1,0 +1,131 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+
+\input{general_preamble}
+
+% DEFINE TITLE STYLES
+\makeatletter 
+\renewcommand\maketitle{
+{\begin{center}
+{\Large \bfseries \@title }\\
+{\small \emph{First created}: \DTMdisplaydate{2023}{12}{14}{-1}\hfill%
+\setstretch{1.0} \small \hfill \emph{Last update}: \today}
+%{\Large  \@author}\\[4ex] 
+\end{center}}} % Note the extra }
+\makeatother
+
+%-------------------------------------------------------------------------
+
+\begin{document}
+
+%\sisetup{parse-numbers = false}
+\DTMsetdatestyle{cvdateformat}
+
+\title{\vspace{-3em} Multiplexed mRNA \textit{in-situ} Hybridization Chain Reaction (HCR) in whole-mount \emph{Mytilus galloprovincialis} embryos}
+\maketitle
+\thispagestyle{plain}
+\markboth{HCR in \emph{Mytilus} embryos}{}
+
+\section*{\vspace{-1em} \textendash{} Protocol \textendash{}}
+\markright{Protocol}
+
+\subsection*{Day 1 \textendash{} Sample preparation}
+
+\alert{This protocol refers to samples that have been already fixed and stored in pure methanol at \minustwenty. Mind to protect samples from light if they are marked with MitoTracker.}
+
+\alert{Check if the detergent solution need to be stirred and heated to \qty{\sim 40}{\degreeCelsius} to dissolove SDS.}
+
+\begin{enumerate}[series = steps]
+	\item \step{wash}{\qtytimes{4}{5}{\minute}}{\onemil}{PBST}{RT}
+\end{enumerate}
+
+\bigskip\alert{\qty{5}{\ul} of embryo suspension collected from the pellet should be enough.}
+
+\begin{enumerate}[resume = steps]
+	\item \step{incubate}{\qty{10}{\minute}}{\onemil}{PBST}{RT}
+	\item \step{permeabilize}{\qty{30}{\minute}}{\fivehunmicrol}{detergent solution}{RT}
+\end{enumerate}
+
+\bigskip\alert{Pre-heat probe-hybridization buffer to \thirtysevendegree{} (you will need \qty{400}{\ul} per tube [\twohunmicrol{} for the pre-hybridization, and \twohunmicrol{} for the probe solution]).}
+
+\begin{enumerate}[resume = steps]
+	\item \step{wash}{\qtytimes{2}{5}{\minute}}{\onemil}{PBST}{RT}
+\end{enumerate}
+
+
+\subsection*{Day 1 \textendash{} HCR detection stage}
+\begin{enumerate}[series = steps]
+	\item \step{pre-hybridize}{\halfhour}{\twohunmicrol}{pre-warmed probe hybridization buffer}{\thirtysevendegree}
+\end{enumerate}
+
+\bigskip\alert{If reusing probes, pre-warm probe solution to \thirtysevendegree, then skip to Step 3.}
+
+\alert{At this step, samples can be stored in probe hybridization buffer at \minustwenty{} for several months.}
+
+\begin{enumerate}[resume = steps]
+	\item Prepare probe solution by adding \qty{0.8}{\ul} (\qty{0.8}{\pmol}) of each \textbf{probe set \qty{1}{\micro\molar} stock solution} to \twohunmicrol{} of \textbf{probe hybridization buffer} (final concentration of \qty{4}{\nano\molar}) at \thirtysevendegree.\\
+	      \note{if using \fivehunmicrol{} of probe solution, add \qty{2}{\ul} (\qty{2}{\pmol}) of each probe set.}
+	\item \step{incubate}{\qty{> 12}{\hour} (overnight)}{\twohunmicrol}{pre-warmed probe solution}{\thirtysevendegree}
+\end{enumerate}
+
+
+\bigskip\alert{Pre-heat probe wash buffer at \thirtysevendegree{} (you will need \fivehunmicrol{} per tube per 4 washes).}
+
+
+\subsection*{Day 2 \textendash{} HCR amplification stage}
+
+\alert{Pre-equilibrate amplification buffer to room temperature (you will need \qty{600}{\ul} per tube [\fivehunmicrol{} for pre-amplification, and \qty{100}{\ul} for the hairpin solution]).}
+\begin{enumerate}[series = steps]
+	\item \step{wash}{\qtytimes{4}{20}{\minute}}{\fivehunmicrol}{probe wash buffer}{\thirtysevendegree}
+\end{enumerate}
+
+\bigskip\alert{Probe solution can be saved and reused for 2--3 times; store at \minustwenty.}
+
+\begin{enumerate}[resume = steps]
+	\item \step{wash}{\qtytimes{3}{5}{\minute}}{\fivehunmicrol{} (or \onemil)}{\ssct}{RT}
+	\item \step{pre-amplify}{\halfhour}{\fivehunmicrol}{amplification buffer}{RT}
+	\item Snap cool in separate tubes \qty{2}{\ul} of \textbf{hairpin H1} (\qty{15}{\pmol}) and \qty{2}{\ul} of \textbf{hairpin H2} (\qty{15}{\pmol}) \textbf{\qty{3}{\micro\molar} stock solutions}: heat at \qty{95}{\degreeCelsius} for \qty{90}{\s} and cool to RT in the dark for \halfhour.
+	      %\note{doubling hairpin concentration can help to boost signal.}
+\end{enumerate}
+
+\bigskip\alert{If reusing hairpin solutions, heat at \qty{95}{\degreeCelsius} and cool at RT, then skip at Step 6.}
+
+\begin{enumerate}[resume = steps]
+	\item Prepare hairpin solution by adding \textbf{snap-cooled H1 hairpins} and \textbf{snap-cooled H2 hairpins} to \qty{100}{\ul} of \textbf{amplification buffer} (final concentration of each hairpin of \qty{60}{\nano\molar}) at RT.\\
+	      \note{if using \qty{200}{\ul} of amplification buffer, add \qty{4}{\ul} (\qty{30}{\pmol}) of each hairpin.}\\
+	      \note{if using \qty{500}{\ul} of amplification buffer, add \qty{10}{\ul} (\qty{75}{\pmol}) of each hairpin.}
+	\item \step{incubate}{\qty{>12}{\hour} (overnight)}{\twohunmicrol}{hairpin solution}{RT}
+\end{enumerate}
+
+\subsection*{Day 3 \textendash{} HCR conclusion}
+
+\begin{enumerate}[series = steps]
+	\item \step{wash}{\qtytimes{2}{5}{\minute}, \qtytimes{2}{30}{\minute}, and \qtytimes{1}{5}{\minute}}{\fivehunmicrol{} (or \onemil)}{\ssct}{RT}
+\end{enumerate}
+
+\bigskip\alert{Hairpin solution can be saved and reused for 2--3 times; store at \minustwenty.}
+\alert{At this step, samples can be stored in the dark in \ssct for several days at room temperature.}
+
+
+\subsection*{Day 3 \textendash{} Sample mounting}
+
+\begin{enumerate}[series = steps]
+	\item \step{incubate}{\qtyrange{30}{60}{\minute}}{\onemil}{\qty{50}{\percent} glycerol in \pbs}{RT}
+	\item \step{incubate}{\qtyrange{30}{60}{\minute}}{\onemil}{\qty{75}{\percent} glycerol in \pbs}{RT}
+\end{enumerate}
+
+\bigskip\alert{Maintaining samples at pH 7.40 is critical for the stability of fluorophores and long-term storage of mRNA \textit{in-situ} HCR samples.}
+\alert{At this step, samples can be stored in the dark in \qty{75}{\percent} glycerol for several month at \fourdegree.}
+
+\begin{enumerate}[resume = steps]
+	\item Collect a small amount of samples (\qtyrange{\sim 1.5}{2}{\ul}) from the \qty{75}{\percent} glycerol solution and place them on a cleaned (bridged, if necessary) slide.
+	\item Add \qtyrange{\sim 15}{20}{\ul} of VECTASHIELD\textregistered{} PLUS Antifade Mounting Medium with DAPI [H-2000] directly on samples.
+\end{enumerate}
+
+\bigskip\alert{Adjust the amount of embryo suspension and mounting medium according to the cover glass dimensions, the quantity of samples, and the thickness of the bridge.}
+
+\begin{enumerate}[resume = steps]
+	\item	Seal the slide with nail polish and store in the dark at \fourdegree.
+\end{enumerate}
+
+\end{document}
