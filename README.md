@@ -25,7 +25,6 @@ In this repository there are all the code/scripts, input files, and intermediate
     * [`00_input/mgal_proteome_GOannotation.tsv`](00_input/mgal_proteome_GOannotation.tsv) is the GO term annotation of the *M. galloprovincialis* predicted proteome, as returned by the [OMA browser](https://omabrowser.org/oma/functions/);
     * [`00_input/vasa_piwi_nanos_spPHI.faa`](00_input/vasa_piwi_nanos_spPHI.faa) is the fasta file with sequences of some germline markers;
     * [`00_input/vasa_ref.faa`](00_input/vasa_ref.faa) is the fasta file with *Vasa* sequences from reference species;
-* [`compiled_softwares/`](compiled_softwares/) contains some of the compiled softwares as used in the analyses;
 * [`conda_envs/`](conda_envs/) contains the YAML files of the conda environments used in the analyses;
 * [`intermediate_results/`](intermediate_results/) contains some of the intermediate results obtained throughout the analyses;
 * [`scripts/`](scripts/) contains all the scripts used in the analyses, each with extensive code comments;
