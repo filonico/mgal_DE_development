@@ -27,6 +27,7 @@ mkdir -p 02_trimmed_reads/01_fastqc
 for i in 01_raw_reads/SRR*; do python3 scripts/02_trim_reads.py -d $i -adapt 00_input_files/contaminants2trimm.fa; done
 
 # aggregate fastqc report into a single html file
+# REQUIRES: conda_envs/multiqc_env.yml
 multiqc -o 02_trimmed_reads/01_fastqc 02_trimmed_reads/01_fastqc
 
 
