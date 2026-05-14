@@ -1,0 +1,157 @@
+\documentclass[10pt]{report}
+\usepackage[utf8]{inputenc}
+
+\input{general_preamble}
+
+% DEFINE TITLE STYLES
+\makeatletter 
+\renewcommand\maketitle{
+{\begin{center}
+{\Large \bfseries \@title }\\
+{\small \emph{First created}: \DTMdisplaydate{2023}{11}{28}{-1}\hfill%
+\setstretch{1.0} \small \hfill \emph{Last update}: \today}
+%{\Large  \@author}\\[4ex] 
+\end{center}}} % Note the extra }
+\makeatother
+
+%-------------------------------------------------------------------------
+
+\begin{document}
+
+%\sisetup{parse-numbers = false}
+\DTMsetdatestyle{cvdateformat}
+
+\title{\vspace{-3em} Spawning induction by thermal shock of the Mediterranean mussel (\emph{Mytilus galloprovincialis}), and general embryology.}
+\maketitle
+\thispagestyle{plain}
+\markboth{\emph{Mytilus} embryology}{}
+
+\section*{\vspace{-1em} \textendash{} Protocol \textendash{}}
+\markright{Protocol}
+
+\subsection*{Spawning by thermal shock}
+
+\alert{Mussels can be spawned either collectively in a container or individually in cups/beakers of around \qty{250}{\ml}. Spawning mussels in a communal container will significantly reduce the hands-on time, but will increase the probability of multiple crosses if adequate caution is not exercised. If strictly individual crosses are necessary, consider spawning mussels individually.}
+
+\begin{enumerate}[series = steps]
+	\item Pre-heat two different stocks of filtered sea water (FSW) or filtered artificial sea water (FASW) at \qty{~14}{\degreeCelsius} (cool water) and \qty{~26}{\degreeCelsius} (warm water), respectively.
+\end{enumerate}
+
+\bigskip\alert{The difference in temperature between cool and warm water should be \qty{~10}{\degreeCelsius}.}
+\alert{If using FASW made from tap water, a conditioner for marine aquarium shouuld be used.}
+
+\begin{enumerate}[resume = steps]
+	\item Collect adult mussels and either refrigerate them at \fourdegree{} overnight or place them in ice for \qtyrange{30}{60}{\minute}.
+	\item \textit{(Optional)} Acclimate mussels in FSW/FASW at \qty{16}{\degreeCelsius} for \qtyrange{30}{60}{\minute}.
+	\item Place mussels in the cool water for about \qtyrange{20}{30}{\minute}.
+	\item Discard the cool water and replace with the warm water. Let mussels rest for \qtyrange{20}{30}{\minute}.
+	\item Check whether any spawning has already occured. If keeping mussels in a communal container, promptly isolate individuals in separate cups/beakers as soon as they start spawning, taking care of carefully wash them with FSW/FASW and air dry. If no spawning can be observed, repeat from step 4.
+\end{enumerate}
+
+\bigskip\alert{Mussels tend to close their valves when placed in the cool water, so spawning often happens more intensely in the warm water.}
+\alert{Spawning can be encouraged/enhanced by gently tapping the container(s).}
+
+\begin{enumerate}[resume = steps]
+	\item During spawning, male mussels are recognised because water turns milky (sperm), while female mussels are recognised because an orange-ish material (eggs) deposits at the bottom of the container.
+\end{enumerate}
+
+
+\subsection*{Fertilization and embryo rearing}
+\begin{enumerate}[series = steps]
+	\item After \qty{1}{\hour} since spawning started, collect the desired pair(s) of females and males.
+\end{enumerate}
+
+\bigskip\alert{If performing multiple crosses, gametes from multiple females and males can be mixed together.}
+
+\begin{enumerate}[resume = steps]
+	\item Filter the eff suspension using a \qty{75}{\um} over a \qty{30}{\um} nylon mesh (egg size is \qtyrange{~40}{50}{\um}), in order to remove debris and concentrate gametes.
+	\item Diluite eggs to \qty{1}{\liter} of FSW/FASW and quantify them, by counting in three replicates. Age eggs in FSW/FASW for \qtyrange{45}{60}{\minute} until they acquire a round shape.
+	\item If labelling sperm mitochondria, add \qty{1}{\ul} of MitoTracker\texttrademark{} Red CMXRos \qty{1}{\milli\molar} stock solution to \qty{2}{\ml} of sperm suspension (working concentration of \qty{500}{\nano\molar}). If embryos do not segment properly, add \qty{1}{\ul} of MitoTracker\texttrademark{} Red CMXRos \qty{1}{\milli\molar} stock solution to \qty{10}{\ml} of sperm suspension (working concentration of \qty{100}{\nano\molar}). Incubate for \qty{20}{\minute} at room temperature taking care to protect from light.
+\end{enumerate}
+
+\bigskip\alert{From this step onward, if sperm are stained with MitoTracker, keep samples in the dark.}
+
+\begin{enumerate}[resume = steps]
+	\item Add the (stained) sperm suspension into the egg suspension to reach an egg sperm ratio of ~1:10. Stir vigorously. Check under a microscope for proper ratio. Eggs can be concentrated using a nylon mesh before this step.
+\end{enumerate}
+
+\bigskip\alert{Be determined and fast at this step, in order to have a synchronised fertilization of most eggs. If keeping adding sperm over several minutes, embryo development will probably result to be strongly asynchronous.}
+\alert{Do not exceed the egg/sperm ratio of 1:10, otherwise polyploidisation of embryos will occur frequently.}
+
+\begin{enumerate}[resume = steps]
+	\item Leave sperm to fertilize eggs for \qty{~30}{\minute}. After this time, eggs can be \textit{optionally} washed with FSW/FASW to remove excess sperm and avoid polyspermy. 
+	\item Stir vigorously and check for fertilization success by assessing the presence of polar bodies under a microscope.
+	\item Keeping in mind the estimated initial concentration of eggs, aliquote the embryos to a suitable growing container (e.g., multi-well plates or cell culture flasks) and add FSW/FASW to reach a final concentration of \qtyrange{~200}{250}{\embryo\per\ml}.
+	\item Keep embryo preferably at \qty{16\pm1}{\degreeCelsius}.
+	\item Before \qty{48}{\hpf}, embryo do not need to be fed or oxygenated.
+	\item \textit{(Optional)} Change water \qty{24}{\hpf} by filtering embryos with a \qty{>30}{\um} mesh.
+	\item If rearing larvae after \qty{48}{\hpf} (D-veliger stage), change water and feed them every \qtyrange{2}{3}{\day}. During early stages, larvae can be fed with the flagellate \textit{Isochrysis galbana} (cell size \qty{~5}{\um}) at a concentration of \qty[scientific-notation = false, group-digits = false]{~100000}{\cells\per\ml}, or with the diatom \textit{Chaetocerus muelleri} (cell size of \qtyrange{~5}{10}{\um}) at a concentration of \qty[scientific-notation = false, group-digits = false]{~75000}{\cells\per\ml}. If larvae need to be reared for longer periods, follow the guidelines by Helm et al., 2004.
+\end{enumerate}
+
+\subsection*{Embryo collection and fixation}
+
+\alert{Preferably execute this part of the protocol under constant and gentle rocking (\qty{~600}{\rpm}).}
+\alert{If not using sieving baskets, spin samples between each step for \qtyrange{2}{3}{\minute} at \qty[scientific-notation = false, group-digits = false]{5000}{\rpm}.}
+\alert{If sperm is stained with MitoTracker, keep samples in the dark.}
+
+\begin{enumerate}[series = steps]
+	\item Collect the desired amount of samples and immerse in \qty{3.2}{\percent} PFA in \pbs{} fixative.
+\end{enumerate}
+
+\bigskip\alert{Do not exceed the ratio of samples/fixative of 1:3.}
+\alert{When processing many samples at the same time, add few drops of the fixative solution directly to the embryos/larvae. This will prevent developmental unpairing. Additionally, this helps when dealing with samples older than \qty{24}{\hpf}, as they possess cilia and are highly motile (they can not be pelleted by spinning).}
+
+\begin{enumerate}[resume = steps]
+	\item Incubate embryos in the fixative solution overnight at \fourdegree{} or for \qtyrange{1}{2}{\hour} at room temperature.
+	\item Discard the fixative solution and wash samples \qtytimes{3}{20}{\minute} in \pbs{}/PBST at room temperature.
+	\item Discard the \pbs{}/PBST and progressively dehydrate embryos in \qtylist{25;50;75}{\percent} methanol in \pbs{} for \qtyrange{20}{30}{\minute} at room temperature.
+\end{enumerate}
+
+\bigskip\alert{Samples can be stored long term in absolute methanol at \minustwenty.}
+
+\clearpage
+
+\section*{\textendash{} Recipes \textendash{}}
+\setstretch{0.95}
+\markright{Recipes}
+
+\subsection*{\qty{3.2}{\percent} paraformaldehyde (PFA) fixative}
+
+\begin{table}[H]
+	%\setstretch{0.95}
+	\centering
+	\begin{tabular}{r
+		S[table-format = 4.4, exponent-mode = fixed, fixed-exponent = 0, round-mode = places, round-precision = 4]@{\,} % disable scientific notation
+		l
+		S[table-format = 3.2, table-align-text-post = false, exponent-mode = fixed, fixed-exponent = 0, round-mode = places, round-precision = 2] % disable scientific notation
+		c
+		}
+		\textbf{Compound}                        & \multicolumn{2}{c}{\textbf{Quantity}} & \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Molar mass\\ (\unit{\g\per\mole})\end{tabular}}} & \multicolumn{1}{l}{\textbf{\begin{tabular}[c]{@{}c@{}}Final concentration\\ (for \qty{100}{\ml})\end{tabular}}}                            \\*[0.4cm]
+		Paraformaldehyde						 & 3.2									 & \unit{\g}																							  & \NA																												& \qty{3.2}{\percent} 	   \\
+		\qty{1}{\molar} \ce{NaOH}				 & \multicolumn{2}{c}{as needed}																											  	  & \NA																										    	& \NA				       \\
+		\qty{1}{\molar} \ce{HCl}				 & \multicolumn{2}{c}{as needed}																											  	  & \NA																										    	& \NA				       \\
+		\pbs			                         & \multicolumn{2}{c}{\NA}					                                                                                                      & \NA																												& \NA				       \\
+	\end{tabular}
+\end{table}
+
+\begin{enumerate}
+	\item Under a ventilated hood, add \qty{80}{\ml} of \pbs{} into a glass beaker and preheat at \qty{60}{\degreeCelsius} (mind that the solution does not boil);
+	\item while stirring, careefully add \qty{3.2}{\g} of PFA;
+	\item gently raise the pH by adding \qty{1}{\molar} \ce{NaOH} dropwise with a glass pipette: this will speed up PFA solubilization;
+	\item when PFA is fully dissolved and the solution is clear, adjust the volume to \qty{100}{\ml};
+	\item \textit{(Optional)} Filter the solution with filter paper disks;
+	\item if necessary, adjust the pH to 7 by adding \qty{1}{\molar} \ce{HCl} dropwise with a glass pipette;
+	\item the fixative solution can be stored for short-term usage at \fourdegree{} or for long-term usage at \minustwenty{}, possibly protected from light.
+\end{enumerate}
+
+\section*{\textendash{} Resources \textendash{}}
+\markright{Resources}
+
+\begin{itemize}
+	\item Helm, M. M., Bourne, N., \& Lovatelli, A. (2004). The hatchery culture of bivalves: a practical manual. FAO.
+	\item Hua, Z., Churches, N., \& Nuzhdin, S. V. (2023). Balancing selection and candidate loci for survival and growth during larval development in the Mediterranean mussel, \textit{Mytilus galloprovincialis}. \textit{G3: Genes, Genomes, Genetics}, \textit{13}(7), jkad103. \ulhref{https://doi.org/10.1093/g3journal/jkad103}{10.1093/g3journal/jkad103}
+	\item Miglioli, A., Dumollard, R., Balbi, T., Besnardeau, L., \& Canesi, L. (2019). Characterization of the main steps in first shell formation in \textit{Mytilus galloprovincialis}: possible role of tyrosinase. \textit{Proceedings of the Royal Society B: Biological Sciences}, \textit{286}(1916). \ulhref{https://doi.org/10.1098/rspb.2019.2043}{10.1098/rspb.2019.2043}
+	\item Rafiq, A., Capolupo, M., Addesse, G., Valbonesi, P., \& Fabbri, E. (2023). Antidepressants and their metabolites primarily affect lysosomal functions in the marine mussel, \textit{Mytilus galloprovincialis}. \textit{Science of the Total Environment}, \textit{903}, 166078.. \ulhref{https://doi.org/10.1016/j.scitotenv.2023.166078}{10.1016/j.scitotenv.2023.166078}
+\end{itemize}
+
+\end{document}
