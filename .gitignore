@@ -21,3 +21,6 @@ slurm*
 07_HCR_probes/*
 08_figures_for_ms/*
 download_reads.sh
+Snakefile
+config.yaml
+.snakemake/

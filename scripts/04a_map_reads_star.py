@@ -22,7 +22,7 @@
 #
 #
 # Written by:   Filippo Nicolini
-# Last updated: 27/11/2023
+# Last updated: 13/05/2026
 #
 #------------------------------------------------------------------
 
@@ -94,10 +94,10 @@ def map_reads(genomedir, readfiles, genomegtf, output_prefix):
                                 "--runThreadN 15 "
                                 f"--genomeDir {genomedir} "
                                 f"--readFilesIn {readfiles} "
-#                                "--readFilesCommand zcat "
+                                "--readFilesCommand zcat "
                                 f"--sjdbGTFfile {genomegtf} "
-				"--sjdbGTFtagExonParentTranscript Parent "
-				"--sjdbGTFtagExonParentGene ID "
+                				"--sjdbGTFtagExonParentTranscript Parent "
+				                "--sjdbGTFtagExonParentGene ID "
                                 f"--outFileNamePrefix {output_prefix} "
                                 "--outSAMtype BAM Unsorted SortedByCoordinate",
                                 shell = True,
@@ -169,10 +169,7 @@ else:
 print()
 print(f"-- {ACC} --")
 
-if args.input_dir.endswith("/"):
-    READFILES = args.input_dir + "*_paired.fastq"
-else:
-    READFILES = args.input_dir + "/*_paired.fastq"
+READFILES = os.path.join(args.input_dir, "*_paired.fastq.gz")
 
 OUTPUT_PREFIX = args.output_dir + "/" + ACC + "_"
 
