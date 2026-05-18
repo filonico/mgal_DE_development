@@ -149,7 +149,7 @@ normalized_reads_bowtie <- normalizeReads_plotPCA("03b_mapped_reads_BOWTIE/ALL.r
 write("", stdout())
 write("--- Analyzing gene raw counts from STAR output---", stdout())
 
-normalized_reads_star <- normalizeReads_plotPCA("03a_mapped_reads_STAR/gene_count_matrix.csv", "00_input/SRA_metadata.tsv")
+normalized_reads_star <- normalizeReads_plotPCA("03a_mapped_reads_STAR/transcript_count_matrix.csv", "00_input/SRA_metadata.tsv")
 
 
 ########################
@@ -203,41 +203,41 @@ save.image(file = "05_masigpro_analysis/DE_timeseries.Rdata")
 # vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B067558"] # spPHI:    no
 # vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B093608"] # dmrt1L:  no
 # vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B014180"] # soxH:    no
-# vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B094018"] # foxL2:   YES, cluster 3
-# vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:   YES, cluster 9
+# vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B094018"] # foxL2:   YES, module 3
+# vstnorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:   YES, module 9
 
 # # vst norm, all timepoints
-# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI03912.1"] # vasa:    YES, cluster 3
-# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI80212.1"] # nanos:    YES, cluster 3
+# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI03912.1"] # vasa:    YES, module 3
+# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI80212.1"] # nanos:    YES, module 3
 # vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI60324.1"] # piwia:    no
-# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI83778.1"] # piwib:    YES, cluster 2
-# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI56617.1"] # spPHI:    YES, cluster 2
+# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI83778.1"] # piwib:    YES, module 2
+# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI56617.1"] # spPHI:    YES, module 2
 # vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI03798.1"] # dmrt1L:  no
 # vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI30824.1"] # soxH:    no
-# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI49864.1"] # foxL2:   YES, cluster 4
+# vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI49864.1"] # foxL2:   YES, module 4
 # vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI54402.1"] # wnt8a:   no
 # vstnorm_alltimepoints$visualization_genes$cut["Mgal_VDI35942.1"] # foxB2:   no
 
 # # vst norm, 24hpf
-# vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B017427"] # vasa:    YES, cluster 6
+# vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B017427"] # vasa:    YES, module 6
 # vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B093608"] # dmrt1L:  no
 # vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B014180"] # soxH:    no
 # vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B094018"] # foxL2:   no
-# vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:   YES, cluster 2
+# vstnorm_24hpf$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:   YES, module 2
 
 # # rlog norm, all timepoints
 # rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B017427"] # vasa:   no
 # rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B093608"] # dmrt1L: no
 # rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B014180"] # soxH:   no
-# rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B094018"] # foxL2:  YES, cluster 6
-# rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:  YES, cluster 1
+# rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B094018"] # foxL2:  YES, module 6
+# rlognorm_alltimepoints$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:  YES, module 1
 
 # # rlog norm, 24hpf
-# rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B017427"] # vasa:   YES, cluster 7
+# rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B017427"] # vasa:   YES, module 7
 # rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B093608"] # dmrt1L: no
 # rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B014180"] # soxH:   no
 # rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B094018"] # foxL2:  no
-# rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:  YES, cluster 4
+# rlognorm_24hpf$visualization_genes$cut["gene-MGAL_10B085403"] # wnt8a:  YES, module 4
 
 
 ##################################
@@ -247,7 +247,7 @@ save.image(file = "05_masigpro_analysis/DE_timeseries.Rdata")
 load(file = "05_masigpro_analysis/DE_timeseries.Rdata")
 
 # labels for plot strips
-labeller_cluster <- vstnorm_alltimepoints$visualization_genes$cut %>%
+labeller_module <- vstnorm_alltimepoints$visualization_genes$cut %>%
   tibble(group = .) %>%
   group_by(group) %>%
   summarise(n_genes = n()) %>%
@@ -282,7 +282,7 @@ gene_mean <- data_to_plot %>%
   mutate(line_type = factor(line_type,
                             levels = c("Vasa", "Nanos", "Piwi-b", "spPHI", "Fox-L2", "Other genes", "Mean expression")))
 
-# calculate mean expression values for each cluster (dashed lines)
+# calculate mean expression values for each module (dashed lines)
 group_mean <- data_to_plot %>%
   group_by(group, Time) %>%
   summarise(mean_profile = mean(profile),
@@ -357,7 +357,7 @@ masigpro_groups_panel <- ggplot() +
   
   scale_x_continuous(breaks = unique(gene_mean$Time), expand = c(0, 0)) +
   
-  facet_wrap(~group, labeller = labeller_cluster) +
+  facet_wrap(~group, labeller = labeller_module) +
   
   xlab("Hours post fertilization (hpf)") +
   ylab("Normalized expression value") +
@@ -370,10 +370,10 @@ masigpro_groups_panel <- ggplot() +
 masigpro_groups_panel
 
 # save panel
-ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.pdf",
+ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_modules.pdf",
        plot = masigpro_groups_panel, device = "pdf",
        dpi = 300, height = 6, width = 9, units = ("in"), bg = "white")
-ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_clusters.png",
+ggsave("05_masigpro_analysis/vstnorm_alltimepoints_maSigPro_modules.png",
        plot = masigpro_groups_panel, device = "png",
        dpi = 300, height = 6, width = 10, units = ("in"), bg = "white")
 
@@ -392,7 +392,7 @@ load("05_masigpro_analysis/DE_timeseries.Rdata")
 #     SAVE CLUSTER GENES TO FILES     #
 #######################################
 
-# get the list of genes per cluster
+# get the list of genes per module
 gene_lists <- data_to_plot %>%
   select(group, gene) %>%
   distinct(group, gene) %>%
@@ -401,14 +401,14 @@ gene_lists <- data_to_plot %>%
   deframe()
   { setNames(.$group, .$genes) }
 
-# write the list of genes per cluster to separate files
-for (cluster in names(gene_lists)) {
-  file_path <- paste0("05_masigpro_analysis/01_genes_per_cluster/cluster_", cluster, "_genes.ls")
-  writeLines(gene_lists[[cluster]],
+# write the list of genes per module to separate files
+for (module in names(gene_lists)) {
+  file_path <- paste0("05_masigpro_analysis/01_genes_per_module/module_", module, "_genes.ls")
+  writeLines(gene_lists[[module]],
              file_path)
 }
 
 vstnorm_alltimepoints$counts %>%
   rownames_to_column(var = "genes") %>%
   pull(genes) %>%
-  writeLines("05_masigpro_analysis/01_genes_per_cluster/gene_universe.ls")
+  writeLines("05_masigpro_analysis/01_genes_per_module/gene_universe.ls")

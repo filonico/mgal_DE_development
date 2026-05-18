@@ -8,7 +8,7 @@
 #
 # ./
 # └── your_output_dir/
-#     ├── 01_fastq/
+#     ├── 01_fastqc/
 #     |   └── {results of fastqc analysis}
 #     ├── SRRXXXXXX1/
 #     |   ├── SRRXXXXXX1_1.fastq.gz

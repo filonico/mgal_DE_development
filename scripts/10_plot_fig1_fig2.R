@@ -15,47 +15,47 @@ setwd("/data/evassvis/fn76/mgal_DE_development")
 #     FUNCTIONS     #
 #####################
 
-plot_module_expression_values <- function(data_to_plot, cluster) {
+plot_module_expression_values <- function(data_to_plot, module) {
   
   # create plot
   masigpro_expression <- ggplot() +
     
     # grey gene lines
-    geom_line(data = data_to_plot %>% filter(group %in% cluster),
+    geom_line(data = data_to_plot %>% filter(group %in% module),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               alpha = 0.3, linewidth = 0.3, lineend = "round") +
     
     # mean line
-    geom_line(data = group_mean %>% filter(group %in% cluster),
+    geom_line(data = group_mean %>% filter(group %in% module),
               aes(x = Time, y = mean_profile, group = group, color = line_type),
               linewidth = 0.6, linetype = "dashed", lineend = "round") +
     
     # nanos line
-    geom_line(data = data_to_plot %>% filter(group %in% cluster) %>%
+    geom_line(data = data_to_plot %>% filter(group %in% module) %>%
                 filter(gene == "Mgal_VDI80212.1"),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               linewidth = 1, lineend = "round") +
     
     # vasa line
-    geom_line(data = data_to_plot %>% filter(group %in% cluster) %>%
+    geom_line(data = data_to_plot %>% filter(group %in% module) %>%
                 filter(gene == "Mgal_VDI03912.1"),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               linewidth = 1, lineend = "round") +
     
     # piwib line
-    geom_line(data = data_to_plot %>% filter(group %in% cluster) %>%
+    geom_line(data = data_to_plot %>% filter(group %in% module) %>%
                 filter(gene == "Mgal_VDI83778.1"),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               linewidth = 1, lineend = "round") +
     
     # spPHI line
-    geom_line(data = data_to_plot %>% filter(group %in% cluster) %>%
+    geom_line(data = data_to_plot %>% filter(group %in% module) %>%
                 filter(gene == "Mgal_VDI56617.1"),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               linewidth = 1, lineend = "round") +
     
     # FoxL2 line
-    geom_line(data = data_to_plot %>% filter(group %in% cluster) %>%
+    geom_line(data = data_to_plot %>% filter(group %in% module) %>%
                 filter(gene == "Mgal_VDI49864.1"),
               aes(x = Time, y = profile_mean, group = gene, color = line_type),
               linewidth = 1, lineend = "round") +
@@ -211,28 +211,28 @@ load("05_masigpro_analysis/DE_timeseries.Rdata")
 
 group_mean <- group_mean %>% mutate(Time = as_factor(Time), line_type = "Mean expr")
 
-cluster2_3_expression <- plot_module_expression_values(gene_mean %>%
+module2_3_expression <- plot_module_expression_values(gene_mean %>%
                                                          mutate(Time = as_factor(Time)), c("2", "3"))
-cluster2_3_expression
+module2_3_expression
 
-cluster_3_expression <- plot_module_expression_values(gene_mean %>%
+module_3_expression <- plot_module_expression_values(gene_mean %>%
                                                         mutate(Time = as_factor(Time)), "3") +
   ggtitle("maSigPro Module 3")
-cluster_3_expression
+module_3_expression
 
-cluster_4_expression <- plot_module_expression_values(gene_mean %>%
+module_4_expression <- plot_module_expression_values(gene_mean %>%
                                                         mutate(Time = as_factor(Time)), "4") +
   ggtitle("maSigPro Module 4")
-cluster_4_expression
+module_4_expression
 
 
 #########################
 #     PLOT GO TERMS     #
 #########################
 
-# cluster2_mds <- get_GOterm_semantic_mds("05_masigpro_analysis/01_genes_per_cluster/cluster_2_genes_GOterms_topGO_BP_elim.txt")
+# module2_mds <- get_GOterm_semantic_mds("05_masigpro_analysis/01_genes_per_module/module_2_genes_GOterms_topGO_BP_elim.txt")
 # 
-# cluster2_mds_plot <- cluster2_mds %>%
+# module2_mds_plot <- module2_mds %>%
 #   ggplot(aes(D1, D2)) +
 #   geom_point(aes(size = Significant, fill = -log(classicFisher)),
 #              shape = 21, color = "#08306B", alpha = 0.7) +
@@ -283,11 +283,11 @@ cluster_4_expression
 #   theme_bw(base_size = 12) +
 #   theme_for_MDS +
 #   theme(plot.margin = margin(0, 0, 6, 6, "mm"))
-# cluster2_mds_plot
+# module2_mds_plot
 
-cluster3_mds <- get_GOterm_semantic_mds("05_masigpro_analysis/01_genes_per_cluster/cluster_3_genes_GOterms_topGO_BP_elim.txt")
+module3_mds <- get_GOterm_semantic_mds("05_masigpro_analysis/01_genes_per_module/module_3_genes_GOterms_topGO_BP_elim.txt")
 
-cluster3_mds_plot <- cluster3_mds %>%
+module3_mds_plot <- module3_mds %>%
   ggplot(aes(D1, D2)) +
   geom_point(aes(size = Significant, fill = -log(classicFisher)),
              shape = 21, color = "#08306B", alpha = 0.7) +
@@ -344,11 +344,11 @@ cluster3_mds_plot <- cluster3_mds %>%
   theme_bw(base_size = 12) +
   theme_for_MDS +
   theme(plot.margin = margin(0, 0, 6, 6, "mm"))
-cluster3_mds_plot
+module3_mds_plot
 
-cluster4_mds <- get_GOterm_semantic_mds("05_masigpro_analysis/01_genes_per_cluster/cluster_4_genes_GOterms_topGO_BP_elim.txt")
+module4_mds <- get_GOterm_semantic_mds("05_masigpro_analysis/01_genes_per_module/module_4_genes_GOterms_topGO_BP_elim.txt")
 
-cluster4_mds_plot <- cluster4_mds %>%
+module4_mds_plot <- module4_mds %>%
   ggplot(aes(D1, D2)) +
   geom_point(aes(size = Significant, fill = -log(classicFisher)),
              shape = 21, color = "#08306B", alpha = 0.7) +
@@ -399,15 +399,15 @@ cluster4_mds_plot <- cluster4_mds %>%
   theme_bw(base_size = 12) +
   theme_for_MDS +
   theme(plot.margin = margin(0, 0, 6, 6, "mm"))
-cluster4_mds_plot
+module4_mds_plot
 
 
 #################
 #     PANEL     #
 #################
 
-panel_vasa <- ggpubr::ggarrange(cluster_3_expression + theme(axis.title.x = element_blank()),
-                                cluster3_mds_plot,
+panel_vasa <- ggpubr::ggarrange(module_3_expression + theme(axis.title.x = element_blank()),
+                                module3_mds_plot,
                                 widths = c(1,0.6), labels = c("B", "C"))
 panel_vasa
 
@@ -420,8 +420,8 @@ ggsave("07_figures_for_ms/fig1_panel.png",
        dpi = 300, height = 6/1.5, width = 20/1.5, units = ("in"), bg = "transparent")
 
 
-panel_foxl2 <- ggpubr::ggarrange(cluster_4_expression + theme(axis.title.x = element_blank()),
-                                 cluster4_mds_plot,
+panel_foxl2 <- ggpubr::ggarrange(module_4_expression + theme(axis.title.x = element_blank()),
+                                 module4_mds_plot,
                                  widths = c(1,0.6), labels = c("B", "C"))
 panel_foxl2
 

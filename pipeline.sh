@@ -65,7 +65,7 @@ Rscript scripts/06_plotPCA_readcounts.R
 #     RUN DE ANALYSIS     #
 ###########################
 
-mkdir -p 05_masigpro_analysis/01_genes_per_cluster/
+mkdir -p 05_masigpro_analysis/01_genes_per_module/
 
 # normalize read counts and run a PCA analysis
 # REQUIRES: conda_envs/R_env.yml
@@ -76,13 +76,13 @@ Rscript scripts/07_DE_timeseries.R
 #     GO ENRICHMENT     #
 #########################
 
-# get GO annotation for each cluster marker and the gene universe
-for i in 05_masigpro_analysis/01_genes_per_cluster/cluster*ls; do grep -wf $i 00_input/mgal_proteome_GOannotation.tsv > "${i%%.*}"_GOterms.tsv; done
-grep -v "!" 00_input/mgal_proteome_GOannotation.tsv > 05_masigpro_analysis/01_genes_per_cluster/gene_universe_GOterms.tsv
+# get GO annotation for each module marker and the gene universe
+for i in 05_masigpro_analysis/01_genes_per_module/module*ls; do grep -wf $i 00_input/mgal_proteome_GOannotation.tsv > "${i%%.*}"_GOterms.tsv; done
+grep -v "!" 00_input/mgal_proteome_GOannotation.tsv > 05_masigpro_analysis/01_genes_per_module/gene_universe_GOterms.tsv
 
-# perform GO enrichment for each cluster
+# perform GO enrichment for each module
 # REQUIRES: conda_envs/R_env.yml
-for i in 05_masigpro_analysis/01_genes_per_cluster/cluster*tsv; do Rscript scripts/08_perform_GOenrich.R 05_masigpro_analysis/01_genes_per_cluster/gene_universe_GOterms.tsv $i "${i%%.*}"_; done
+for i in 05_masigpro_analysis/01_genes_per_module/module*tsv; do Rscript scripts/08_perform_GOenrich.R 05_masigpro_analysis/01_genes_per_module/gene_universe_GOterms.tsv $i "${i%%.*}"_; done
 
 
 ###################
