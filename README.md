@@ -8,8 +8,12 @@ In this repository you will find data and codes used to perform the analyses for
 
 Visit our research group website, **[EVO·COM](https://sites.google.com/view/evo-com-unibo)**!
 
-## What you can find here
-In this repository there are all the code/scripts, input files, and intermediate results that have been used and generated for the paper. In particular:
+## What you'll find here
+In this repository there are all the code/scripts, input files, and intermediate results that have been used and generated for the paper.
+
+Note that the pipeline can be run either through Snakemake (see [`Snakefile`](Snakefile)) or by manually executing commands from the command-line (see [`pipeline.sh`](pipeline.sh)).
+
+Here's the description of each folder content/file:
 
 * [`00_input/`](00_input) contains starting input files used throughout the analysis;
     * [`00_input/OG0007197_vasa.fa`](00_input/OG0007197_vasa.fa) is the fasta file of bivalve Vasa (Ddx3) orthogroup from [Nicolini et al., 2025](https://github.com/filonico/bivalvia_SRGs/);
@@ -25,6 +29,8 @@ In this repository there are all the code/scripts, input files, and intermediate
     * [`00_input/mgal_proteome_GOannotation.tsv`](00_input/mgal_proteome_GOannotation.tsv) is the GO term annotation of the *M. galloprovincialis* predicted proteome, as returned by the [OMA browser](https://omabrowser.org/oma/functions/);
     * [`00_input/vasa_piwi_nanos_spPHI.faa`](00_input/vasa_piwi_nanos_spPHI.faa) is the fasta file with sequences of some germline markers;
     * [`00_input/vasa_ref.faa`](00_input/vasa_ref.faa) is the fasta file with *Vasa* sequences from reference species;
+* [`Snakefile`](Snakefile) is the snakefile to run the pipeline;
+* [`config.yaml`](config.yaml) is the snakemake configuration file;
 * [`conda_envs/`](conda_envs/) contains the YAML files of the conda environments used in the analyses;
 * [`intermediate_results/`](intermediate_results/) contains some of the intermediate results obtained throughout the analyses;
 * [`scripts/`](scripts/) contains all the scripts used in the analyses, each with extensive code comments;
