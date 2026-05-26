@@ -1,0 +1,154 @@
+% DOCUMENT STYLE
+\usepackage[a4paper,left=1.5cm, right=1.5cm, top=2.7cm, bottom=2cm,headsep=\dimexpr2.5cm-55pt\relax,headheight=55pt]{geometry}
+\linespread{1.5}                                    % regulate line spacing
+\usepackage{setspace}
+\usepackage[parfill]{parskip}                       % remove indentation of first line
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{multicol}
+%\usepackage{booktabs}
+
+% FONTS
+\usepackage{fontspec}
+\setmainfont{RobotoSerif}[
+  Path = ./font/ ,
+  Extension = .ttf ,
+  UprightFont = *-Regular ,
+  ItalicFont = *-Italic ,
+  BoldFont = *-Bold ,
+  BoldItalicFont = *-BoldItalic
+]
+
+% package to generate random textcomp
+\usepackage{blindtext}
+
+\newlist{todolist}{itemize}{1}
+\setlist[todolist]{label=$\square$}
+
+% FORMAT HEADERS AND FOOTERS
+\usepackage{fancyhdr}
+\pagestyle{fancy} % page style to fancy to print header
+\rhead{\footnotesize \emph{Last update}: \today}
+\lhead{\footnotesize \em \nouppercase{\leftmark{} \textendash{} \rightmark}}
+
+% BIBLIOGRAPHY AND HYPERREFS
+\usepackage{nameref}
+\usepackage[hidelinks]{hyperref}
+\usepackage[style=apa, sorting=ynt, uniquename=false]{biblatex}
+\newcommand{\ulhref}[2]{\href{#1}{\underline{#2}}}                              % declare command to make hyperlinks underlined
+\newcommand{\citebold}[1]{\textbf{\cite{#1}}}                                   % declare new command to make citations bold
+\newcommand{\citeboldyearparent}[1]{\textbf{\citeauthor*{#1} (\citeyear{#1})}}  % declare new command to make citations Author, et al . (year)
+\renewcommand\multicitedelim{\normalfont{\addsemicolon\space}}                  % set multi-citation delimiter not-bold
+
+% CHEMICAL FORMULAE AND SPECIAL SYMBOLS
+\usepackage[version=4]{mhchem}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\sisetup{
+  detect-all = true,                                    % detect and follow surrounding font changes
+  range-phrase= \textendash{}, range-units = single,               % set range format
+  per-mode = symbol,                                    % set "/" as format for fraction units
+  uncertainty-mode = separate,                          % seprate uncertainty (+-) from number
+  separate-uncertainty-units = single,                  % put units only after uncertainty
+  group-digits = integer,                               % apply digit grouping just for the integer part 
+  group-separator = {,},                                % separator between digits
+  group-minimum-digits = 4,                             % set the minimun number of digits to apply goruping to 4
+  bracket-unit-denominator = false,                     % do not put brackets in denominator
+  list-units = single,                                  % in list mode, put units only at the end
+  exponent-mode = threshold,                            % automatically typeset with scientific notation (default threshold of -3:3)
+  print-unity-mantissa = false                          % do not print mantissa if it is 1
+  %round-mode = places,
+  %round-precision = 3
+  }
+\DeclareSIUnit{\nothing}{\relax}                  % define unit to typset just prefixes
+\DeclareSIUnit{\molar}{M}                         % define unit for molar cocnentration (M)
+\DeclareSIUnit{\activeunit}{U}                    % define unit for enzyme active units
+\DeclareSIUnit{\hpf}{hpf}                         % define unit for hours post fertilization    
+\DeclareSIUnit{\embryo}{embryos}                  % define unit for embryos                     
+\DeclareSIUnit{\cells}{cells}                     % define unit for cells                         
+\DeclareSIUnit{\rpm}{rpm}                         % define unit revolutions per minute
+
+\newcommand{\per}{$\times$}
+\newcommand{\NA}{\textendash{}}
+\newcommand{\doublecurlyquotes}[1]{“#1”}
+\newcommand{\singlecurlyquotes}[1]{‘#1’}
+\newcommand{\curlyapostrophe}{’}
+
+% percentages
+\newcommand{\hundredpercent}{\qty{100}{\percent}}
+\newcommand{\fivepercent}{\qty{5}{\percent}}
+\newcommand{\onepercent}{\qty{1}{\percent}}
+\newcommand{\zeroonepercent}{\qty{0.1}{\percent}}
+
+% volumes
+\newcommand{\twohunmicrol}{\qty{200}{\ul}}
+\newcommand{\fivehunmicrol}{\qty{500}{\ul}}
+\newcommand{\onemil}{\qty{1}{\ml}}
+
+% temperatures
+\newcommand{\fourdegree}{\qty{4}{\degreeCelsius}}
+\newcommand{\thirtysevendegree}{\qty{37}{\degreeCelsius}}
+\newcommand{\minustwenty}{\qty{-20}{\degreeCelsius}}
+
+% time
+\newcommand{\tenmin}{\qty{10}{\minute}}
+\newcommand{\quarter}{\qty{15}{\minute}}
+\newcommand{\halfhour}{\qty{30}{\minute}}
+
+% reagents
+\newcommand{\pbs}{1\per{} PBS}
+\newcommand{\hs}{0.25\per{} HS}
+\newcommand{\ssct}{5\per{} SSCT}
+
+% others
+\newcommand{\qtytimes}[3]{#1 \per{} \qty{#2}{#3}}
+\newcommand{\noexponentnum}[1]{\num[exponent-mode = fixed, fixed-exponent = 0]{#1}}
+
+% DATES
+\usepackage[datesep=/, calc, en-GB]{datetime2}
+\usepackage{fmtcount}
+
+% define the style for CV, that is: Jan 1st, 2024
+\DTMnewdatestyle{cvdateformat}{%
+  \renewcommand{\DTMdisplaydate}[4]{%
+  \DTMshortmonthname{##2} \protect\ordinalnum{##3}, \number##1 }%
+  \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+
+% GLOSSARIES, ACRONYMS, AND ABBREVIATIONS
+\usepackage[acronym, nonumberlist, toc, nomain, nopostdot, shortcuts]{glossaries-extra}
+%\loadglsentries{sections/abbreviations}	
+% define command to print brackets when first usage is within parenthesis
+\newcommand*{\pac}[2][]{\ifglsused{#2}{\acs[#1]{#2}}{%
+ \glsunset{#2}%
+ \acl[#1]{#2} [\acs[#1]{#2}]}}
+
+\usepackage{titlesec}
+%\titleformat{⟨command⟩}[⟨shape⟩]{⟨format⟩}{⟨label⟩}{⟨sep⟩}{⟨before-code⟩}[⟨after-code⟩]
+\titleformat{\section}{\large\bfseries\uppercase}{\thesection}{}{\centering}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{}{}
+
+% DEFINE BUTTON-STYLE BOXES
+%\usepackage{tcolorbox}
+%\tcbset{on line}
+
+%\newcommand{\insertboxes}[3]{{\bfseries \tcbox{#1} \tcbox{#2} \tcbox{#3}}}
+
+% DEFINE LEFT EMPHASIS-RULE
+\usepackage{mdframed}
+\newmdenv[
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  linecolor=gray
+]{leftrule}
+\newcommand{\alert}[1]{{\itshape \small \setstretch{1.0} \begin{leftrule} \textcolor{gray}{#1} \end{leftrule}}}
+
+% STEP SYNTAX
+% wash steps: #1=action; #2=time; #3=quantity; #4=reagent; #5=temperature
+\newcommand{\step}[5]{\MakeUppercase #1 samples for \underline{#2} with #3 of \textbf{#4} at #5.}
+\newcommand{\note}[1]{{\itshape \small \textcolor{gray}{Note: #1}}}
